@@ -1,0 +1,91 @@
+<ResourceDictionary
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" 
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:controls="using:AppStudio.Controls">
+
+    <!-- ListPhotoLeft -->
+    <DataTemplate x:Key="VideoTipsList">
+        <Grid MinWidth="480">
+            <GridView ItemsSource="{Binding PreviewItems}" SelectedItem="{Binding NavigationItem, Mode=TwoWay}"
+                     SelectionMode="Single" IsSwipeEnabled="False" ScrollViewer.VerticalScrollBarVisibility="Hidden"
+                     ItemTemplate="{StaticResource VideoTipsItem}">
+            </GridView>
+            <ProgressBar Height="40" Foreground="White" VerticalAlignment="Top" IsIndeterminate="True" Visibility="{Binding ProgressBarVisibility}" />
+        </Grid>
+    </DataTemplate>
+
+    <DataTemplate x:Key="VideoTipsListSnapped">
+        <Grid Width="230">
+            <GridView ItemsSource="{Binding PreviewItems}" SelectedItem="{Binding NavigationItem, Mode=TwoWay}"
+                     SelectionMode="Single" IsSwipeEnabled="False" ScrollViewer.VerticalScrollBarVisibility="Hidden"
+                     ItemTemplate="{StaticResource VideoTipsItemSnapped}">
+            </GridView>
+            <ProgressBar Height="40" Foreground="White" VerticalAlignment="Top" IsIndeterminate="True" Visibility="{Binding ProgressBarVisibility}" />
+        </Grid>
+    </DataTemplate>
+
+    <!-- ListPhotoLeft Item -->
+    <DataTemplate x:Key="VideoTipsItem">
+        <Grid Width="480" Height="210">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="50"/>
+                <RowDefinition Height="160"/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="140"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+
+            <TextBlock Grid.Row="0" Grid.ColumnSpan="2" Margin="0, 0, 10, 0" Style="{StaticResource ItemHeaderWrapText}"
+                       MaxHeight="50" VerticalAlignment="Center" Text="{Binding Title, Converter={StaticResource TextPlainConverter}, ConverterParameter=140}" />
+            <Image Grid.Row="1" Grid.Column="0" Margin="0, 8" Source="{Binding ImageUrl, Converter={StaticResource ThumbnailConverter}, ConverterParameter=220}"
+                   MaxHeight="110" Stretch="UniformToFill" VerticalAlignment="Top" />
+            <TextBlock Grid.Row="1" Grid.Column="1" Margin="16, 8, 20, 10" Style="{StaticResource ItemSubheaderText}"
+                       MaxHeight="110" VerticalAlignment="Top" Text="{Binding Summary, Converter={StaticResource TextPlainConverter}, ConverterParameter=280}" />
+        </Grid>
+    </DataTemplate>
+
+    <DataTemplate x:Key="VideoTipsItemSnapped">
+        <Grid Width="220" Height="95">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="25"/>
+                <RowDefinition Height="70"/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="60"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+
+          <TextBlock Grid.Row="0" Grid.ColumnSpan="2" Margin="0, 0, 10, 0" Style="{StaticResource ItemHeaderWrapTextSnapped}"
+                     MaxHeight="25" VerticalAlignment="Center" Text="{Binding Title, Converter={StaticResource TextPlainConverter}, ConverterParameter=140}" />
+          <Image Grid.Row="1" Grid.Column="0" Margin="0, 8" Source="{Binding ImageUrl, Converter={StaticResource ThumbnailConverter}, ConverterParameter=220}"
+                 MaxHeight="50" Stretch="UniformToFill" VerticalAlignment="Top" />
+          <TextBlock Grid.Row="1" Grid.Column="1" Margin="16, 8, 20, 10" Style="{StaticResource ItemSubheaderTextSnapped}"
+                     MaxHeight="50" VerticalAlignment="Top" Text="{Binding Summary, Converter={StaticResource TextPlainConverter}, ConverterParameter=280}" />
+        </Grid>
+    </DataTemplate>
+
+
+    <!-- InstancePhoto -->
+    <DataTemplate x:Key="VideoTips1DetailDetail">
+        <Grid Margin="12,0">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+          
+            <TextBlock Grid.Row="0" Style="{StaticResource HeaderText}" Text="{Binding Title, Converter={StaticResource TextPlainConverter}, ConverterParameter = 140}" />
+            <MediaElement Grid.Row="1" Margin="0,24" Width="440" Height="320" Source="{Binding MediaUrl}" VerticalAlignment="Top" AreTransportControlsEnabled="True" AutoPlay="False"/>
+        </Grid>
+    </DataTemplate>
+
+    <DataTemplate x:Key="VideoTips1DetailDetailSnapped">
+      <Grid Width="230">
+        <StackPanel>
+          <TextBlock  Margin="0,0,0,30" Style="{StaticResource HeaderText}" Text="{Binding Title, Converter={StaticResource TextPlainConverter}, ConverterParameter = 140}" />        
+          <Image Source="{Binding ImageUrl, Converter={StaticResource ThumbnailConverter}, ConverterParameter=250}" MaxHeight="250" VerticalAlignment="Top" Stretch="UniformToFill" />
+        </StackPanel>
+      </Grid>
+    </DataTemplate>
+
+</ResourceDictionary>
